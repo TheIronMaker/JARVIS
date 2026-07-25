@@ -1,0 +1,13 @@
+[project]
+name = "jarvis-modules"
+version = "0.0.1"
+description = "Contains all major system modules"
+authors = [{name = "Andrew Morris"}]
+requires-python = ">=3.11"
+
+[tool.uv]
+managed = true
+package = false
+
+[tool.uv.sources]
+jarvis-core = { workspace = true }

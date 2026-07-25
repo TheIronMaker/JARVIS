@@ -1,11 +1,7 @@
-[build-system]
-requires = ["setuptools>=65", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "jarvis"
-version = "0.1.3"
-description = "Morris Industries JARVIS"
+version = "0.0.1"
+description = "Stark Industries JARVIS"
 authors = [{name = "Andrew Morris"}]
 requires-python = ">=3.11"
 readme = "README.md"
@@ -20,12 +16,16 @@ classifiers = [
 
 dependencies = [
     "jarvis-core",
-    "jarvis-app",
-    "jarvis-kinematics"
+    "jarvis-app"
 ]
 
 [tool.uv.workspace]
-members = [".", "packages/*"]
+members = [
+    ".",
+    "packages/*",
+    "packages/modules",
+    "packages/modules/*/*"
+]
 
 [tool.uv]
 managed = true
@@ -34,4 +34,3 @@ package = false
 [tool.uv.sources]
 jarvis-core = { workspace = true }
 jarvis-app = { workspace = true }
-jarvis-kinematics = { workspace = true }

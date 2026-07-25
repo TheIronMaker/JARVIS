@@ -4,7 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jarvis-app"
-version = "0.1.0"
+version = "0.0.1"
+description = "Application creation and management system"
+authors = [{name = "Andrew Morris"}]
 license = { text = "Apache-2.0" } 
 dependencies = [
     "jarvis-core",

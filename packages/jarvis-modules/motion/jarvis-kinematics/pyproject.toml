@@ -5,6 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "jarvis-kinematics"
 version = "0.1.0"
+description = "Kinematics Management Service"
+authors = [{name = "Andrew Morris"}]
 license = { text = "Apache-2.0" } 
 
 dependencies = [

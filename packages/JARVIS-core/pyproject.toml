@@ -4,8 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jarvis-core"
-version = "0.1.0"
-license = { text = "Apache-2.0" } 
+version = "0.0.1"
+description = "The core JARVIS module that all JARVIS systems may depend on."
+authors = [{name = "Andrew Morris"}]
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+
 dependencies = [
     "pyzmq",
     "msgpack",
@@ -13,11 +17,6 @@ dependencies = [
     "platformdirs",
     "deepmerge",
     "pyyaml"
-]
-
-[project.optional-dependencies]
-hand-tracking = [
-    "mediapipe"
 ]
 
 [tool.setuptools.packages.find]

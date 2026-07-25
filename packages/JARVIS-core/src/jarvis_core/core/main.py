@@ -3,7 +3,6 @@ from pathlib import Path
 from jarvis_core.logger import Logger
 from jarvis_core.threaded import ThreadedResource
 from jarvis_core.network import DataBus
-from jarvis_core.modules import ModuleManager
 from jarvis_app.app import app
 
 from jarvis_core.utils.services.path_resolver import PathResolver
@@ -22,7 +21,7 @@ class Core(ThreadedResource):
         super().__init__(self.config.get("cycle_time"))
     
         self.module_managers = {}
-        self.load_module_managers()
+        #self.load_module_managers()
 
     def initialize(self):
         if self.config.get("start_thread"):
@@ -43,9 +42,9 @@ class Core(ThreadedResource):
                     
                     Logger.error("Module manager build missing id. Skipping.")
                     continue
-                manager = ModuleManager(self.bus, id)
-                manager.start_modules()
-                self.module_managers[id] = manager #@revisit-add: if id exists
+                #manager = ModuleManager(self.bus, id)
+                #manager.start_modules()
+                #self.module_managers[id] = manager #@revisit-add: if id exists
 
     def _main_process(self):
         pass
@@ -65,7 +64,7 @@ def construct_cores(build):
     return cores
 
 # The Core factory is not refined now
-def main():
+def old_main():
     build = PathResolver.load_file("core_main", ".json", "project", "configs/core")
     cores = construct_cores(build)
     for core in cores.values():
@@ -76,6 +75,9 @@ def main():
         for module_manager in core.module_managers.values():
             module_manager.destruct()
         core._stop_thread()
+
+def main():
+    window = app()
 
 if __name__ == "__main__":
     main()

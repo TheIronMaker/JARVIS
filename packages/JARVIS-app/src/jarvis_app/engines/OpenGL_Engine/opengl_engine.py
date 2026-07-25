@@ -8,7 +8,7 @@ import glm
 
 from jarvis_app.engines.OpenGL_engine.camera import Camera
 from jarvis_app.engines.OpenGL_engine.shaders import VERTEX_SHADER, FRAGMENT_SHADER
-from jarvis_core.modules.atom_sim import AtomSimNode
+from jarvis_atom import AtomSimNode
 
 def OpenGL_QSurfaceFormat():
     format = QSurfaceFormat()

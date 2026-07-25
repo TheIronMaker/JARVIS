@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jarvis-micro-controllers"
+version = "0.1.0"
+description = "All micro-controller management"
+requires-python = ">=3.11"
+
+dependencies = [] # <- Third party libraries go here or in optional-dependencies extras for extra features
+
+[tool.uv.sources]
+jarvis-micro-controllers = { workspace = true }

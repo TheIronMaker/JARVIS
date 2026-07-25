@@ -1,0 +1,12 @@
+[project]
+name = "jarvis-modules-hardware"
+version = "0.0.1"
+description = "All hardware/interfacing modules"
+requires-python = ">=3.11"
+
+dependencies = [
+    "jarvis-micro-controllers",
+]
+
+[tool.uv.sources]
+jarvis-micro-controllers = { workspace = true }

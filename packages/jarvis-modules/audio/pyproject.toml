@@ -1,0 +1,11 @@
+[project]
+name = "jarvis-modules-audio"
+version = "0.0.1"
+description = "All sound related operations"
+requires-python = ">=3.11"
+
+dependencies = [] # List out things like tts and stt when built out
+
+#[tool.uv.sources]
+# jarvis-tts = { workspace = true }
+# jarvis-stt = { workspace = true }
