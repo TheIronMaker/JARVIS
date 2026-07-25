@@ -26,7 +26,8 @@ class PathResolver:
     """
 
     SCHEMA_ROOT = {
-        "PACKAGE": Path(__file__).parent.parent.parent,
+        "CORE": Path(__file__).resolve().parents[3],
+        "PACKAGE": Path(__file__).resolve().parents[6],
         "PROJECT": Path(__file__).resolve().parents[7],
         "CONFIG": Path(user_config_dir("jarvis")),
         "DATA": Path(user_data_dir("jarvis")),

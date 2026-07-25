@@ -77,6 +77,19 @@ def old_main():
         core._stop_thread()
 
 def main():
+    build = PathResolver.load_file("init-base.yaml", domain="core", location="config")
+
+    # This may be improved by building a proper YAML parser/verification
+    if isinstance(build, dict):
+        cores = build.get("cores", None)
+        if not cores:
+            Logger.error("No cores to start. Shutting down systems...")
+            return
+    else:
+        Logger.error(f"Core configuration invalid format type: {type(build).__name__}. Should be type: dict")
+        return
+
+    # To be driven by config values
     window = app()
 
 if __name__ == "__main__":

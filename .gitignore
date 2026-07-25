@@ -8,6 +8,7 @@
 # IDE settings folders
 .vscode/
 .idea/
+.obsidian/
 
 # Building/Virtual Environments
 venv/
