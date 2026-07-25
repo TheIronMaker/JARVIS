@@ -8,7 +8,6 @@ import glm
 
 from jarvis_app.engines.OpenGL_engine.camera import Camera
 from jarvis_app.engines.OpenGL_engine.shaders import VERTEX_SHADER, FRAGMENT_SHADER
-from jarvis_atom import AtomSimNode
 
 def OpenGL_QSurfaceFormat():
     format = QSurfaceFormat()
@@ -23,7 +22,7 @@ def OpenGL_QSurfaceFormat():
 
 
 class OpenGLEngine(QOpenGLWidget):
-    def __init__(self, name, parent, vertices:np.float32=None, particles:np.ndarray=None, scale=1.0):
+    def __init__(self, name, parent, atom, vertices:np.float32=None, particles:np.ndarray=None, scale=1.0):
         super().__init__()
         self.name = name
         self.parent = parent
@@ -48,8 +47,8 @@ class OpenGLEngine(QOpenGLWidget):
 
         self.camera = Camera(self)
 
-        config = [2,1,1,10000]
-        self.atom = AtomSimNode(config)
+        #config = [2,1,1,10000]
+        self.atom = atom # AtomSimNode(config)
         self.atom.generateParticles()
 
         self.timer = QTimer(self, interval=6) # 16ms = ~60 FPS

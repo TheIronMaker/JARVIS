@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jarvis-atom-sim"
+version = "0.0.1"
+description = "Atom Simulator - originally ported to python from Kavan's C++ Atom Simulator"
+requires-python = ">=3.11"
+
+dependencies = []
+
+[tool.uv.sources]
+jarvis-micro-controllers = { workspace = true }

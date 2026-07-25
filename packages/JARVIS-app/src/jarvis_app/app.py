@@ -9,23 +9,22 @@ from jarvis_core.utils.services.path_resolver import PathResolver
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, bus):
+    def __init__(self):
         super().__init__()
-        self.bus = bus
 
         self.build = PathResolver.load_file("app_main", ".json", "project", "configs/apps")
         self.view_managers = {}
         self.docks = {}
 
-        self.load_view_managers()
-        self._build_central()
+        #self.load_view_managers()
+        #self._build_central()
     
     def load_view_managers(self):
         for config in self.build.get("view_managers", []):
             if not config.get("enabled", True):
                 continue
             name = config.get("name")
-            self.view_managers[name] = ViewContainer(self, self.bus, config)
+            self.view_managers[name] = ViewContainer(self, config)
 
     def _build_central(self):
         self.setWindowTitle("JARVIS")
