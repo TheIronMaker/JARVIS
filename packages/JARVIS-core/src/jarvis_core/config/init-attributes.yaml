@@ -1,0 +1,4 @@
+context: config-attributes
+cores:
+  details: "A collection of core modules to spin up at boot. Each core may split into many sub processes and nested cores."
+  type: collection

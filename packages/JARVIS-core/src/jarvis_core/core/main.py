@@ -10,7 +10,7 @@ from jarvis_core.utils.services.path_resolver import PathResolver
 CONFIG = PathResolver.load_file("core_main", ".json", "project", "configs/core")
 CORE_BUILD_DIR = Path(__file__).parent / "core_builds"
 
-class Core(ThreadedResource):
+class Old_Core(ThreadedResource):
     def __init__(self, id, parent_config=None):
         self.id = id
         self.parent_config = parent_config
@@ -60,7 +60,7 @@ def construct_cores(build):
         if core_build.get("enabled") == False or not id:
             continue
 
-        cores[id] = Core(id)
+        cores[id] = Old_Core(id)
     return cores
 
 # The Core factory is not refined now
@@ -76,7 +76,13 @@ def old_main():
             module_manager.destruct()
         core._stop_thread()
 
-def main():
+
+class Core(ThreadedResource):
+    def __init__(self, config):
+        self.config = config
+        super().__init__(config.get("cycle_time"))
+
+def main() -> None:
     build = PathResolver.load_file("init-base.yaml", domain="core", location="config")
 
     # This may be improved by building a proper YAML parser/verification
@@ -88,6 +94,11 @@ def main():
     else:
         Logger.error(f"Core configuration invalid format type: {type(build).__name__}. Should be type: dict")
         return
+
+    for key in build["cores"]:
+        config = PathResolver.load_file(key, ".yaml", "config", "core/builds")
+        Core(config)
+        # Goal: Core class starts and manages itself
 
     # To be driven by config values
     window = app()

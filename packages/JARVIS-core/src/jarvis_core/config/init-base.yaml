@@ -1,2 +1,4 @@
 context: config-base
-cores: []
+cores: {
+  UUIDgen
+}

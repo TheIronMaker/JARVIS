@@ -1,8 +1,8 @@
 
-main_window:
-  context: config-attributes
-  type: collection
+context: config-attributes
+type: collection
 
+main_window:
   size:
     details: "Size of the main window"
     type: collection
