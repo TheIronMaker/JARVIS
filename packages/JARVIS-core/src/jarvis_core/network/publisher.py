@@ -1,7 +1,7 @@
 import zmq
 import msgpack
 
-# Serialize values
+# Serialize values - should live in it's own file someday
 def ser_fallback(obj):
     return {"type": "bytes"}, bytes(obj)
 

@@ -1,9 +1,0 @@
-{
-"instances": [
-    {
-        "type": "atom_sim",
-        "name": "atom_sim",
-        "enabled": true
-    }
-]
-}

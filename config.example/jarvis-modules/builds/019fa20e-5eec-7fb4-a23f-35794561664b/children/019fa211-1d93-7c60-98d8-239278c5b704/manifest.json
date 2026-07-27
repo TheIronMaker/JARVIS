@@ -1,0 +1,6 @@
+{
+    "id": "019fa211-1d93-7c60-98d8-239278c5b704",
+    "node-type": "modules.vision.hand_tracking",
+    "parent": false,
+    "enabled": true
+}

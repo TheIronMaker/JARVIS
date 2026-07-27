@@ -1,11 +1,8 @@
 # Core
 ## Module Loading (Very important)
 importlib for loading modules, instead of storing each class in the manager class.
-ID system for devices / modules instead of naming (or importlib - look into this)
 
 ## Settings Loading
-Look into `pydantic`
-Define a scheme class and validation step
 Eliminate need for NodeManager with better loading services
 
 ## Fingers

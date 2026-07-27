@@ -1,5 +1,5 @@
 
-from jarvis_core.utils.services.path_resolver import PathResolver
+from jarvis_core.managers.file_manager import PathResolver
 
 
 class ExtendedPathResolver(PathResolver):

@@ -1,6 +1,6 @@
 context: config-base
 
-main_window_lean:
+nodes:
   size:
     width: 2400
     height: 1600

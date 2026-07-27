@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QSizePolicy
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtCore import Qt
 
-from jarvis_core.utils.services.path_resolver import PathResolver
+from jarvis_core.managers import PathResolver
 from jarvis_core.network import Subscriber, Publisher
 from jarvis_core.utils.helpers.img import round_pixmap, get_frame
 from jarvis_app.gui_elements import ButtonStack

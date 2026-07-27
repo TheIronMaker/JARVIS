@@ -1,14 +1,10 @@
-from pathlib import Path
-
 from jarvis_core.logger import Logger
 from jarvis_core.threaded import ThreadedResource
 from jarvis_core.network import DataBus
 from jarvis_app.app import app
 
-from jarvis_core.utils.services.path_resolver import PathResolver
+from jarvis_core.managers import PathResolver
 
-CONFIG = PathResolver.load_file("core_main", ".json", "project", "configs/core")
-CORE_BUILD_DIR = Path(__file__).parent / "core_builds"
 
 class Old_Core(ThreadedResource):
     def __init__(self, id, parent_config=None):
@@ -83,22 +79,15 @@ class Core(ThreadedResource):
         super().__init__(config.get("cycle_time"))
 
 def main() -> None:
-    build = PathResolver.load_file("init-base.yaml", domain="core", location="config")
-
+    # Goal: Core class starts and manages itself
     # This may be improved by building a proper YAML parser/verification
-    if isinstance(build, dict):
-        cores = build.get("cores", None)
-        if not cores:
-            Logger.error("No cores to start. Shutting down systems...")
-            return
-    else:
-        Logger.error(f"Core configuration invalid format type: {type(build).__name__}. Should be type: dict")
-        return
+    config = PathResolver.load_file(
+        "core",
+        ".yaml",
+        "project",
+        f"JARVIS/config.example/jarvis-core/builds/019fa242-4668-78ae-bd04-cd46330c858a")
 
-    for key in build["cores"]:
-        config = PathResolver.load_file(key, ".yaml", "config", "core/builds")
-        Core(config)
-        # Goal: Core class starts and manages itself
+    Core(config)
 
     # To be driven by config values
     window = app()

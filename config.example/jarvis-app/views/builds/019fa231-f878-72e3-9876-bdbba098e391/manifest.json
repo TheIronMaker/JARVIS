@@ -1,0 +1,5 @@
+{
+    "node-type": "core.node_manager",
+    "parent": true,
+    "enabled": true
+}

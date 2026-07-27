@@ -11,6 +11,7 @@ class Subscriber:
         self.socket.bind("tcp://localhost:5555")
         self.socket.setsockopt_string(zmq.SUBSCRIBE, channel)
 
+        # This should live in it's own file someday
         self.DESERIALIZER = {
             'json': lambda meta, payload: json.loads(payload.decode('utf-8')),
             'msgpack': lambda meta, payload: msgpack.unpackb(payload),

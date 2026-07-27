@@ -1,0 +1,6 @@
+max_hands: 2
+detection_confidence: 0.5
+tracking_confidence: 0.5
+data_smoothing:
+  enabled: true,
+  defaults: [10.0, 0.7, 0.0]

@@ -5,14 +5,14 @@ from PySide6.QtGui import QPainter
 from PySide6.QtCore import Qt, QTimer
 
 from jarvis_app.view_container import ViewContainer
-from jarvis_core.utils.services.path_resolver import PathResolver
+from jarvis_core.managers import PathResolver
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.build = PathResolver.load_file("app_main", ".json", "project", "configs/apps")
+        self.build = PathResolver.load_file("app", ".yaml", "project", "JARVIS/config.example/jarvis-app/app/builds/019fa25d-06c3-7cec-b5ff-4400e131ab13")
         self.view_managers = {}
         self.docks = {}
 

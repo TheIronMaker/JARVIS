@@ -1,0 +1,6 @@
+{
+    "id": "019fa238-f299-7749-bd40-1b29cbeab9a7",
+    "node-type": "views.vision.hand_tracking",
+    "parent": false,
+    "enabled": true
+}
