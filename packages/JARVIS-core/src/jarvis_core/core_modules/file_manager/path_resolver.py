@@ -2,7 +2,8 @@
 from pathlib import Path
 from platformdirs import user_config_dir, user_data_dir, user_cache_dir # Eventually Logs and State
 
-from .file_manager import FileManager
+from jarvis_core.core_modules.file_manager.file_loader import FileLoader
+from jarvis_core.core_modules.file_manager.format_drivers import FORMATS
 
 # This is a good framework to build on. Just need to handle the errors different than `raise` errors
 # Should also rebuild extension handling with `re` parsing for multiple file formats
@@ -13,6 +14,17 @@ Check if a config file exists in the correct place in platformdirs.user_config_d
 If not, use importlib.resources to read the config file from jarvis and copy it to the user's config directory.
 It should load the file from the user's directory from then on.
 """
+
+# To possibly load from internal config file of .py format
+SCHEMA_ROOT = {
+        "CORE": Path(__file__).resolve().parents[3],
+        "PACKAGE": Path(__file__).resolve().parents[6],
+        "PROJECT": Path(__file__).resolve().parents[7],
+        "CONFIG": Path(user_config_dir("jarvis")),
+        "DATA": Path(user_data_dir("jarvis")),
+        "CACHE": Path(user_cache_dir("jarvis"))
+    }
+
 
 class PathResolver:
     """
@@ -25,22 +37,8 @@ class PathResolver:
     - Handling errors for invalid domains, unsupported file formats, and missing files.
     """
 
-    SCHEMA_ROOT = {
-        "CORE": Path(__file__).resolve().parents[3],
-        "PACKAGE": Path(__file__).resolve().parents[6],
-        "PROJECT": Path(__file__).resolve().parents[7],
-        "CONFIG": Path(user_config_dir("jarvis")),
-        "DATA": Path(user_data_dir("jarvis")),
-        "CACHE": Path(user_cache_dir("jarvis"))
-    }
-    SCHEMA_FORMAT = {
-        ".json": FileManager.load_json,
-        ".txt": FileManager.load_txt,
-        ".yaml": FileManager.load_YAML
-    }
-
-    @staticmethod
-    def attach_ext(filename: str, extension: str=None) -> str:
+    @classmethod
+    def _attach_ext(cls, filename: str, extension: str=None) -> str:
         """ Attaches the extension to the filename if it's not already present.
         Args:
             filename (str): The name of the file (with or without extension).
@@ -48,20 +46,21 @@ class PathResolver:
         Returns:
             str: The filename with the extension attached if it was not already present.
         """
-        return filename if not extension or filename.endswith(extension) else filename + PathResolver.format_ext(extension)
+        return filename if not extension or filename.endswith(extension) else filename + cls._format_ext(extension)
 
     @staticmethod
-    def separate_ext(filename: str|Path) -> tuple[str, str]:
+    def _separate_ext(filename: str|Path) -> tuple[str, str]:
         path = Path(filename)
         return path.stem, path.suffix
 
     @staticmethod
-    def format_ext(extension: str) -> str:
+    def _format_ext(extension: str) -> str:
         """Ensures the extension starts with a dot."""
         return extension if extension.startswith(".") else f".{extension}"
 
-    @staticmethod
+    @classmethod
     def resolve_path(
+        cls,
         filename: str,
         extension: str=None,
         domain: str="package",
@@ -82,21 +81,20 @@ class PathResolver:
         """
 
         # Finds Path class directory based on domain
-        path = PathResolver.SCHEMA_ROOT.get(domain.upper())
+        path = SCHEMA_ROOT.get(domain.upper())
         if not path:
-            raise ValueError(f"Invalid domain '{domain}'. Valid domains are: {', '.join(PathResolver.SCHEMA_ROOT.keys())}")
+            print("format not here")
+            raise ValueError(f"Invalid domain '{domain}'. Valid domains are: {', '.join(SCHEMA_ROOT.keys())}")
         
         if location:
             path /= location
 
-        path /= PathResolver.attach_ext(filename, extension)
-        if path.exists():
-            return path
-        
-        raise FileNotFoundError(path)
+        path /= cls._attach_ext(filename, extension)
+        return path
 
-    @staticmethod
+    @classmethod
     def load_file(
+        cls,
         filename: str,
         extension: str=None,
         domain: str="package",
@@ -117,14 +115,11 @@ class PathResolver:
             FileNotFoundError: If the file is not found in the resolved path.
         """
         
-        path = PathResolver.resolve_path(filename, extension, domain, location)
-        ext = PathResolver.format_ext(extension) if extension else PathResolver.separate_ext(filename)[1]
-        loader = PathResolver.SCHEMA_FORMAT.get(ext.lower())
-        if not loader:
-            raise ValueError(f"Unsupported file format '{ext}'. Currently only {', '.join(PathResolver.SCHEMA_FORMAT.keys())} are supported.")
-        
-        try:
-            data = loader(path, config)
-        except:
-            raise FileNotFoundError("File failed to load!")
+        path = cls.resolve_path(filename, extension, domain, location)
+        ext = cls._format_ext(extension) if extension else path.suffix
+
+        if ext.lower() not in FORMATS:
+            raise ValueError(f"Unsupported file format '{ext}'. Currently supported formats: {', '.join(FORMATS)}")
+
+        data = FileLoader.load_file(path, config)
         return data

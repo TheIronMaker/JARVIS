@@ -5,7 +5,7 @@ from PySide6.QtGui import QPainter
 from PySide6.QtCore import Qt, QTimer
 
 from jarvis_app.view_container import ViewContainer
-from jarvis_core.managers import PathResolver
+from jarvis_core.core_modules.file_manager import PathResolver
 
 
 class MainWindow(QMainWindow):
@@ -92,6 +92,6 @@ def app(*args):
     app.exec()
 
 if __name__ == "__main__":
-    from jarvis_core.network.databus_V1 import DataBus
+    from jarvis_core.core_modules.network.databus_V1 import DataBus
     bus = DataBus()
     app(bus)

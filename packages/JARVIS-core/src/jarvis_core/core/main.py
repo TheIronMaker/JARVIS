@@ -1,9 +1,8 @@
-from jarvis_core.logger import Logger
-from jarvis_core.threaded import ThreadedResource
-from jarvis_core.network import DataBus
+from jarvis_core.core_modules.logger import Logger
+from jarvis_core.core_modules.file_manager import PathResolver
+from jarvis_core.core_modules.threaded import ThreadedResource
+from jarvis_core.core_modules.network import DataBus
 from jarvis_app.app import app
-
-from jarvis_core.managers import PathResolver
 
 
 class Old_Core(ThreadedResource):

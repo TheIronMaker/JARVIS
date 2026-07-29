@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from jarvis_core.logger import Logger
+from jarvis_core.core_modules.logger import Logger
 from jarvis_core.utils.services.json_processor import load_json, merge_dictionary
 
 class NodeManager:    
@@ -27,7 +27,7 @@ class NodeManager:
         for struct in self.build.get("instances", []):
             msg = self.construct(struct, start_struct=start_structs)
             if isinstance(msg, str):
-                Logger.error(f"Struct failed to build. {msg}")
+                Logger().error(f"Struct failed to build. {msg}")
                 print(f"Struct: {struct}")
     
     def construct(self, struct:dict, package=[], start_struct:bool=True) -> any:
