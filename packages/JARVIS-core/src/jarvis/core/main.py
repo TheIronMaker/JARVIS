@@ -1,7 +1,7 @@
-from jarvis_core.core_modules.logger import Logger
-from jarvis_core.core_modules.file_manager import PathResolver
-from jarvis_core.core_modules.threaded import ThreadedResource
-from jarvis_core.core_modules.network import DataBus
+from jarvis.core_modules.logger import Logger
+from jarvis.core_modules.files import PathResolver
+from jarvis.core_modules.threaded import ThreadedResource
+from jarvis.core_modules.network import DataBus
 from jarvis_app.app import app
 
 

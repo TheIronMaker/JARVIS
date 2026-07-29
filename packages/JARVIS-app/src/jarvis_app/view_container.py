@@ -5,9 +5,9 @@ from PySide6.QtWidgets import QHBoxLayout, QGroupBox, QSizePolicy
 from PySide6.QtGui import QPainter
 from PySide6.QtCore import QTimer
 
-from jarvis_core.core_modules.logger import Logger
-from jarvis_core.core_modules.file_manager import PathResolver
-from jarvis_core.managers.node_manager import NodeManager
+from jarvis.core_modules.logger import Logger
+from jarvis.core_modules.files import PathResolver
+from jarvis.core.managers.node_manager import NodeManager
 import jarvis_app.views as app_views
 
 VIEWS_DIR = Path(__file__).parent / "views"

@@ -1,7 +1,7 @@
 import threading
 from time import sleep
 
-from jarvis_core.core_modules.logger import Logger
+from jarvis.core_modules.logger import Logger
 
 class ThreadedResource:
     def __init__(self, cycle_time=None, name=None, daemon=False):

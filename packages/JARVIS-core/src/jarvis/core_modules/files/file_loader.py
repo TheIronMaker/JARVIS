@@ -6,7 +6,8 @@ class FileLoader:
 
     def _load_driver(path: Path):
         format = path.suffix[1:].lower()
-        loc = f"jarvis_core.core_modules.file_manager.format_drivers.{format}"
+        loc = f"jarvis.core_modules.files.format_drivers.{format}"
+        # loc is hardcoded, and could break the below code if folder structure changes.
         try:
             return importlib.import_module(loc)
         except ModuleNotFoundError:

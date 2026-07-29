@@ -1,7 +1,7 @@
 import threading
 from collections import defaultdict
 
-from jarvis_core.core_modules.logger import Logger
+from jarvis.core_modules.logger import Logger
 
 class DataBus:
     def __init__(self):

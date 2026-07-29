@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt
 import numpy as np
 
 from jarvis_app.gui_elements import DisplaySlider
-from jarvis_core.utils.helpers.img import get_frame, frame_to_pixmap
+from jarvis.core.utils.helpers.img import get_frame, frame_to_pixmap
 
 class HandTrackerView(QWidget):
     def __init__(self, name, parent, settings):

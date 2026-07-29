@@ -2,8 +2,8 @@
 from pathlib import Path
 from platformdirs import user_config_dir, user_data_dir, user_cache_dir # Eventually Logs and State
 
-from jarvis_core.core_modules.file_manager.file_loader import FileLoader
-from jarvis_core.core_modules.file_manager.format_drivers import FORMATS
+from jarvis.core_modules.files.file_loader import FileLoader
+from jarvis.core_modules.files.format_drivers import FORMATS
 
 # This is a good framework to build on. Just need to handle the errors different than `raise` errors
 # Should also rebuild extension handling with `re` parsing for multiple file formats
