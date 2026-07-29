@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout, Q
 from PySide6.QtGui import QPainter
 from PySide6.QtCore import Qt, QTimer
 
-from jarvis.app.view_container import ViewContainer
+from jarvis_app.view_container import ViewContainer
 from jarvis.core_modules.files import PathResolver
 
 
@@ -75,10 +75,8 @@ class MainWindow(QMainWindow):
 
 def app(*args):
     # QSurfaceFormat will be set from yaml configuration
-    from jarvis.app.engines.ModernGL_engine import app_fmt as PS6
-
-    config = PathResolver.load_file("fmt-base", "yaml", "app", "engines/ModernGL_engine/config")
-    PS6(config)
+    from jarvis_app.engines.OpenGL_engine import OpenGL_QSurfaceFormat as PS6
+    PS6()
 
     app = QApplication(sys.argv)
     window = MainWindow(*args)
@@ -94,4 +92,6 @@ def app(*args):
     app.exec()
 
 if __name__ == "__main__":
-    app()
+    from jarvis.core_modules.network.databus_V1 import DataBus
+    bus = DataBus()
+    app(bus)

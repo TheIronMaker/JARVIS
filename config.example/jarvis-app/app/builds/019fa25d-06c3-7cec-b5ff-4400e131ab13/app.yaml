@@ -1,1 +1,4 @@
-view_managers: [] # UUIDv7 links here
+
+view_nodes: [
+  019fa231-f878-72e3-9876-bdbba098e391
+]

@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt
 from jarvis.core_modules.files import PathResolver
 from jarvis.core_modules.network import Subscriber, Publisher
 from jarvis.core.utils.helpers.img import round_pixmap, get_frame
-from jarvis_app.gui_elements import ButtonStack
+from jarvis.app.gui_elements import ButtonStack
 
 class CameraView(QWidget):
     def __init__(self, parent):

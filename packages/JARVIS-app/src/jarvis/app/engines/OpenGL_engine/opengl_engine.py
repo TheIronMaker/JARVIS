@@ -6,8 +6,8 @@ from PySide6.QtOpenGLWidgets import QOpenGLWidget
 from OpenGL.GL import *
 import glm
 
-from jarvis_app.engines.OpenGL_engine.camera import Camera
-from jarvis_app.engines.OpenGL_engine.shaders import VERTEX_SHADER, FRAGMENT_SHADER
+from jarvis.app.engines.OpenGL_engine.camera import Camera
+from jarvis.app.engines.OpenGL_engine.shaders import VERTEX_SHADER, FRAGMENT_SHADER
 
 def OpenGL_QSurfaceFormat():
     format = QSurfaceFormat()

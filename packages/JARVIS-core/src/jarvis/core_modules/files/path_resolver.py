@@ -18,6 +18,7 @@ It should load the file from the user's directory from then on.
 # To possibly load from internal config file of .py format
 SCHEMA_ROOT = {
         "CORE": Path(__file__).resolve().parents[3],
+        "APP": Path(__file__).resolve().parents[5] / "jarvis-app/src/jarvis/app",
         "PACKAGE": Path(__file__).resolve().parents[6],
         "PROJECT": Path(__file__).resolve().parents[7],
         "CONFIG": Path(user_config_dir("jarvis")),

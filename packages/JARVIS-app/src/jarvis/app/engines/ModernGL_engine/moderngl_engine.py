@@ -1,12 +1,12 @@
 import moderngl
+from pathlib import Path
 
 from PySide6 import QtGui, QtOpenGLWidgets
 from PySide6.QtCore import Qt
 
-from jarvis_app.tools.simple_app import SimpleApp
-from jarvis_core.utils.services.path_resolver import PathResolver
-from jarvis_core.utils.collections import deep_merge
-from jarvis_core.network import Subscriber
+from jarvis.app.tools.simple_app import SimpleApp
+from jarvis.core_modules.files import PathResolver
+from jarvis.core.utils.collections import deep_merge
 
 class ModernGLWidget(QtOpenGLWidgets.QOpenGLWidget):
     def __init__(self, parent=None):
@@ -38,7 +38,7 @@ class ModernGLWidget(QtOpenGLWidgets.QOpenGLWidget):
         # --- ModernGL rendering code goes here - e.g. vao---
 
 
-def app_fmt(config:dict):
+def app_fmt(config: dict):
     if not config: return
 
     profiles = {
@@ -55,23 +55,25 @@ def app_fmt(config:dict):
     }
 
     fmt = QtGui.QSurfaceFormat()
-    fmt.setVersion(config["version"]["major"], config["version"]["minor"])
+    fmt.setVersion(*config["version"])
     fmt.setProfile(profiles.get(config["profile"], profiles["CoreProfile"]))
     
     options = config.get("options")
     #options = [] if options is None else [options] if isinstance(options, str) else options
     for opt in options: fmt.setOption(getattr(QtGui.QSurfaceFormat.FormatOption, opt))
     
-    if type(config["transparency"]["alpha_buffer_size"]) == int:
-        fmt.setAlphaBufferSize(config["transparency"]["alpha_buffer_size"])
+    if type(config["transparency"]["alpha_buffer"]) == int:
+        fmt.setAlphaBufferSize(config["transparency"]["alpha_buffer"])
     
     QtGui.QSurfaceFormat.setDefaultFormat(fmt)
 
 if __name__ == "__main__":
-    resolver = PathResolver()
-    app_config = resolver.load_file("main", "yaml", "config", "app/builds")
-    default_config = resolver.load_file("default", "yaml", "project", "packages/jarvis-app/config/ModernGL")
+    path = Path(__file__).parent / "config"
+
+    app_config = PathResolver().load_file("main", "yaml", "config", "app/builds")
+    default_config = PathResolver().load_file("fmt-base", "yaml", "project", path)
     config = deep_merge(default_config, app_config)
+    
     config["main_window"]["ui_layout"]["central_widget"] = ModernGLWidget
 
     app_fmt(config.get("fmt"))
