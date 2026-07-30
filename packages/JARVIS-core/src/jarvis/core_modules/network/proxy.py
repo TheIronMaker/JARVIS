@@ -6,6 +6,7 @@ class Proxy:
 
 # Basic testing for communication hub
 # The idea is that multiple things can connect to a central namespace/channel and distribute from there
+# The zmq proxy blocks the thread, so the class will need to create another thread to run logic on.
 def proxy():
     context = zmq.Context()
 

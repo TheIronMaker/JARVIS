@@ -84,7 +84,6 @@ class PathResolver:
         # Finds Path class directory based on domain
         path = SCHEMA_ROOT.get(domain.upper())
         if not path:
-            print("format not here")
             raise ValueError(f"Invalid domain '{domain}'. Valid domains are: {', '.join(SCHEMA_ROOT.keys())}")
         
         if location:
