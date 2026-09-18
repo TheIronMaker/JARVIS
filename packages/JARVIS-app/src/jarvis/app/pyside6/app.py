@@ -4,9 +4,10 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout, Q
 from PySide6.QtGui import QPainter
 from PySide6.QtCore import Qt, QTimer
 
-from jarvis.app.view_container import ViewContainer
+from jarvis.app.pyside6.view_container import ViewContainer
 from jarvis.core_modules.files import PathResolver
 
+CONFIG_PATH = "JARVIS/config.example/jarvis-app/app/builds"
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -73,12 +74,26 @@ class MainWindow(QMainWindow):
         for view_manager in self.view_managers.values():
             view_manager.keyPressEvent(event)
 
-def app(*args):
-    # QSurfaceFormat will be set from yaml configuration
-    from jarvis.app.engines.ModernGL_engine import app_fmt as PS6
 
-    config = PathResolver.load_file("fmt-base", "yaml", "app", "engines/ModernGL_engine/config")
-    PS6(config)
+
+def run_boot(instructions):
+    import importlib
+    for import_path, config in instructions.get("boot_operations").items():
+        cls = importlib.import_module(import_path)
+        for function_name, function_config in config.get("functions").items():
+            callable_func = getattr(cls, function_name)
+            if not callable(callable_func):
+                raise TypeError(f"'{function_name}' in {import_path} is not a function.")
+
+            callable_func(function_config)
+
+def app(*args):
+    boot_instructions = PathResolver.load_file("boot", "yaml", "project", CONFIG_PATH)
+    run_boot(boot_instructions)
+
+    # manifest = PathResolver.load_file("manifest", "json", "project", CONFIG_PATH)
+    # for node_id, config in manifest.get("nodes", []).items():
+    #     node_config = PathResolver.load_file(str(node_id) + "/app", "yaml", "project", config_path)
 
     app = QApplication(sys.argv)
     window = MainWindow(*args)

@@ -1,0 +1,9 @@
+{
+    "node-type": "core.manifest",
+    "is_parent": true,
+    "nodes": {
+        "019fa231-f878-72e3-9876-bdbba098e391": {
+            "node-type": "pyside6.views.node_manager"
+        }
+    }
+}

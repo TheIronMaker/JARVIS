@@ -1,0 +1,9 @@
+{
+    "node-type": "app.manifest",
+    "is_parent": false,
+    "nodes": {
+        "019fa25d-06c3-7cec-b5ff-4400e131ab13": {
+            "node-type": "app.node"
+        }
+    }
+}

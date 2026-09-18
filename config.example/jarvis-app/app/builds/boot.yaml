@@ -1,0 +1,14 @@
+context: config-base
+details: Contains base boot values for a standard ModernGL window
+node-type: app.boot
+
+boot_operations:
+  jarvis.app.pyside6.engines.ModernGL_engine.boot:
+    node_id: "019fa25d-06c3-7cec-b5ff-4400e131ab13"
+    functions:
+      app_format:
+        version: [3, 3]
+        profile: "CoreProfile"
+        options: ["DeprecatedFunctions"]
+        transparency:
+          alpha_buffer: 8

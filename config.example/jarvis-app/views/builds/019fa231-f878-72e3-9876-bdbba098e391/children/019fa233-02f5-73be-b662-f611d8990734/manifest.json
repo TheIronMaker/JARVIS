@@ -1,6 +1,6 @@
 {
     "id": "019fa233-02f5-73be-b662-f611d8990734",
-    "node-type": "engines.OpenGL_render",
+    "node-type": "pyside6.engines.OpenGL_render",
     "parent": false,
     "enabled": false
 }

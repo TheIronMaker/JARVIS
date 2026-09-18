@@ -1,1 +1,0 @@
-from .moderngl_engine import ModernGLWidget, app_fmt

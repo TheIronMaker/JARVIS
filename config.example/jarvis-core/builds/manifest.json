@@ -1,0 +1,10 @@
+{
+    "node-type": "core.manifest",
+    "is_parent": true,
+    "nodes": {
+        "019fa242-4668-78ae-bd04-cd46330c858a": {
+            "node-type": "core.node",
+            "threaded": true
+        }
+    }
+}

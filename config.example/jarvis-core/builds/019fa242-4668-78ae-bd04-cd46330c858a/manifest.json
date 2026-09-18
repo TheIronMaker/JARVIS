@@ -1,5 +1,5 @@
 {
-    "node-type": "core.core",
-    "parent": false,
+    "node-type": "core.node",
+    "is_parent": false,
     "enabled": true
 }
