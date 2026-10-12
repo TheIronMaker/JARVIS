@@ -8,6 +8,9 @@ class Core:
     def __init__(self, core_id):
         self.config = PathResolver.load_file("core", "yaml", "project", f"JARVIS/config.example/jarvis-core/builds/{core_id}")
 
+        if self.config.get("app"):
+            pass
+
 class ThreadedCore(Core, ThreadedResource):
     def __init__(self, core_id,):
         super().__init__(core_id)

@@ -1,1 +1,16 @@
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "jarvis-face-tracking"
+version = "0.0.1"
+description = "Tracks a face from a camera input"
+requires-python = ">=3.11"
+
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["jarvis*"]
+namespaces = true

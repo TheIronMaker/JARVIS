@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-from jarvis_core.logger import Logger
-from jarvis_core.threaded import ThreadedResource
+from jarvis.core_modules.logger import Logger
+from jarvis.core_modules.threaded import ThreadedResource
 
 class CameraNode(ThreadedResource):    
     def __init__(self, name, bus, settings):

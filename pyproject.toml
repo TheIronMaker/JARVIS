@@ -16,21 +16,24 @@ classifiers = [
 
 dependencies = [
     "jarvis-core",
-    "jarvis-app"
-]
-
-[tool.uv.workspace]
-members = [
-    ".",
-    "packages/*",
-    "packages/modules",
-    "packages/modules/*/*"
+    "jarvis-app",
+    "jarvis-camera",
+    "jarvis-face-tracking"
 ]
 
 [tool.uv]
-managed = true
 package = false
+
+[tool.uv.workspace]
+members = [
+    "packages/jarvis-core",
+    "packages/jarvis-app",
+    "packages/jarvis-modules/*/*",
+]
 
 [tool.uv.sources]
 jarvis-core = { workspace = true }
 jarvis-app = { workspace = true }
+
+jarvis-camera = { workspace = true }
+jarvis-face-tracking = { workspace = true }

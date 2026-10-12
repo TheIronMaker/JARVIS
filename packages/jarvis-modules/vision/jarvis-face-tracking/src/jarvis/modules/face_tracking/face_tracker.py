@@ -2,7 +2,7 @@ import mediapipe as mp
 
 from jarvis_core.logger import Logger
 
-class FaceTrackerNode:    
+class FaceTrackingNode:    
     def __init__(self, name, bus, settings):
         self.bus_global = bus
         self.bus = bus.namespaced(name)
