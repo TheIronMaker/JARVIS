@@ -1,0 +1,1 @@
+jarvis-modules[camera,face_tracking,hand_tracking]

@@ -23,8 +23,9 @@ from OpenGL.GL import *
 import glm
 
 from .shaders import VERTEX_SHADER, FRAGMENT_SHADER
-from jarvis.modules.face_tracking import FaceTrackingNode
 from jarvis.modules.simulator.atom_sim import AtomSimNode
+from jarvis.modules.vision.camera import CameraNode
+from jarvis.modules.vision.hand_tracking import HandTrackerNode
 
 class PS6():
     @staticmethod

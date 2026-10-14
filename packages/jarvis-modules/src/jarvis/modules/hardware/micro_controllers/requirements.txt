@@ -1,0 +1,4 @@
+
+# PCA9685 - Need a better system for per circuit install equirements
+adafruit-circuitpython-servokit==1.3.24
+adafruit-blinka==8.47.0; sys_platform == 'linux'

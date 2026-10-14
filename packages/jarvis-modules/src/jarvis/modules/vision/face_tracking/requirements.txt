@@ -1,0 +1,2 @@
+jarvis-modules[camera]
+mediapipe<=0.10.30

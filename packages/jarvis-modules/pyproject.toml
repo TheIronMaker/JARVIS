@@ -1,0 +1,42 @@
+[project]
+name = "jarvis-modules"
+version = "0.0.1"
+requires-python = ">=3.11"
+dependencies = []
+dynamic = ["optional-dependencies"]
+
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["jarvis*"]
+namespaces = true
+
+[tool.setuptools.dynamic.optional-dependencies]
+# Audio
+tts = { file = ["src/jarvis/modules/audio/tts/requirements.txt"] }
+stt = { file = ["src/jarvis/modules/audio/stt/requirements.txt"] }
+
+# Hardware
+micro_controllers = { file = ["src/jarvis/modules/hardware/micro_controllers/requirements.txt"] }
+
+# Motion
+kinematics = { file = ["src/jarvis/modules/motion/kinematics/requirements.txt"] }
+
+# Simulator
+atom_sim = { file = ["src/jarvis/modules/simulator/atom_sim/requirements.txt"] }
+
+# Vision
+camera = { file = ["src/jarvis/modules/vision/camera/requirements.txt"] }
+face_tracking = { file = ["src/jarvis/modules/vision/face_tracking/requirements.txt"] }
+hand_tracking = { file = ["src/jarvis/modules/vision/hand_tracking/requirements.txt"] }
+
+audio = { file = ["src/jarvis/modules/audio/requirements.txt"] }
+hardware = { file = ["src/jarvis/modules/hardware/requirements.txt"] }
+motion = { file = ["src/jarvis/modules/motion/requirements.txt"] }
+simulator = { file = ["src/jarvis/modules/simulator/requirements.txt"] }
+vision = { file = ["src/jarvis/modules/vision/requirements.txt"] }
+
+all = { file = ["src/jarvis/modules/requirements.txt"] }
